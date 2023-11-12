@@ -1,4 +1,4 @@
-package fi.assignment.countryservice.mode;
+package fi.assignment.countryservice.model;
 
 import jakarta.validation.constraints.NotNull;
 

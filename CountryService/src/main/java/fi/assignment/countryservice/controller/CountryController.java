@@ -1,6 +1,6 @@
 package fi.assignment.countryservice.controller;
 
-import fi.assignment.countryservice.mode.Country;
+import fi.assignment.countryservice.model.Country;
 import fi.assignment.countryservice.service.CountryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +46,12 @@ public class CountryController {
     @DeleteMapping("/countries")
     public void delete(@RequestBody Country country) {
         Country removed = countryService.deleteCountry(country);
+        if (removed == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/countries/{name}")
+    public void delete(@PathVariable String name) {
+        Country removed = countryService.deleteCountry(name);
         if (removed == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }

@@ -32,8 +32,8 @@ The country data is referenced through REST Countries service.
 - [x] First skeleton, 10-11-2023
 - [x] Hard coded countries can be retrieved, 11-11-2023
 - [x] Unit tests for controller passed, 11-11-2023
-- [X] Manual tests for implemented methods, 11-11-2023
-- [ ] Fetch country data using REST Countries service
-- [ ] Make another service to render the country data
+- [x] Manual tests for implemented methods, 11-11-2023
+- [x] Static web page to display all countries fetched from REST Countries API, 12-11-2023
+- [ ] Store data into local database
 - [ ] Document the code
 - [ ] Code clean up

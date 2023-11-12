@@ -2,7 +2,8 @@ package fi.assignment.countryservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fi.assignment.countryservice.mode.Country;
+import fi.assignment.countryservice.CountryServiceApplication;
+import fi.assignment.countryservice.model.Country;
 import fi.assignment.countryservice.service.CountryService;
 
 import org.junit.jupiter.api.AfterEach;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,12 +28,14 @@ import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = CountryServiceApplication.class)
 @WebMvcTest(CountryController.class)
 class CountryControllerTest {
 
@@ -124,6 +128,18 @@ class CountryControllerTest {
     }
 
     @Test
+    void delete_nonExistingCountry_shouldReturnNotFound() throws Exception {
+        // Act
+        RequestBuilder deleteRequest = delete("/countries/Finland");
+
+        ResultActions result = mockMvc.perform(deleteRequest);
+
+        // Assert
+        result.andDo(print());
+        result.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
     void delete_nonExistingCountry_shouldReturnNotFoundStatus() throws Exception {
         // Arrange
         Country countryToRemove = new Country("Japan", "JP", "Tokyo", "https://flagcdn.com/w320/jp.png", 125836021);
@@ -142,7 +158,7 @@ class CountryControllerTest {
     @Test
     void delete_existingCountry_shouldReturnOkStatus() throws Exception {
         // Arrange
-        given(countryService.deleteCountry(ArgumentMatchers.any()))
+        given(countryService.deleteCountry((Country) ArgumentMatchers.any()))
                 .willAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
 
         Country countryToRemove = new Country("Norway", "NO", "Oslo", "https://flagcdn.com/w320/no.png", 5379475);

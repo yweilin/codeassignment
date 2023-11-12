@@ -1,0 +1,45 @@
+body {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+h1 {
+    width: 100%;
+    margin: 0 auto;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.countries {
+    max-width: 90%;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.country-div {
+    background: silver;
+    border: 1px solid burlywood;
+    padding: 15px;
+}
+
+img {
+    border: 1px solid white;
+    border-radius: 4px;
+    width: 100%;
+    height: 200px;
+}
+
+/* Add media query for responsive */
+@media screen and (max-width: 576px) {
+    .countries {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .country-div {
+        width: 49.99%;
+    }
+}

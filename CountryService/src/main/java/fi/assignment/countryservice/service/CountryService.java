@@ -1,6 +1,6 @@
 package fi.assignment.countryservice.service;
 
-import fi.assignment.countryservice.mode.Country;
+import fi.assignment.countryservice.model.Country;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,6 +10,9 @@ import java.util.Map;
 @Service
 public class CountryService {
 
+    /**
+     * The mock database of country data.
+     */
     private Map<String, Country> countries = new HashMap<>() {{
         put("Finland", new Country("Finland", "FI", "Helsinki", "https://flagcdn.com/w320/fi.png", 5530719));
         put("Hungary", new Country("Hungary", "HU", "Budapest", "https://flagcdn.com/w320/hu.png", 9749763));
@@ -32,4 +35,7 @@ public class CountryService {
         return countries.remove(country.getName());
     }
 
+    public Country deleteCountry(String name) {
+        return countries.remove(name);
+    }
 }
