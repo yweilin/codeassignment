@@ -26,11 +26,23 @@ public class CountryController {
         this.countryService = countryService;
     }
 
+    /**
+     * Get all available countries.
+     * <p>
+     * Usage example:
+     * GET: http://localhost:8081/countries
+     */
     @GetMapping("/countries")
     public Collection<Country> getCountries() {
         return countryService.getCountries();
     }
 
+    /**
+     * Get a country with given parameter of country name.
+     * <p>
+     * Usage example:
+     * GET: http://localhost:8081/countries/Finland
+     */
     @GetMapping("/countries/{name}")
     public Country getCountry(@PathVariable final String name) {
         Country country = countryService.getCountry(name);
@@ -38,17 +50,51 @@ public class CountryController {
         return country;
     }
 
+    /**
+     * Add a country to mock database.
+     * <p>
+     * Usage example:
+     * POST: http://localhost:8081/countries
+     * Example payload:
+     * {
+     * "name": "Japan",
+     * "countryCode": "JP",
+     * "capital": "Tokyo",
+     * "flagFileUrl": "https://flagcdn.com/w320/jp.png",
+     * "population": 100800
+     * }
+     */
     @PostMapping("/countries")
     public void add(@RequestBody @Valid Country name) {
         countryService.add(name);
     }
 
+    /**
+     * Delete a country from mock database with given payload data.
+     * <p>
+     * Usage example:
+     * DELETE: http://localhost:8081/countries/Finland
+     * Example payload:
+     * {
+     * "name": "Japan",
+     * "countryCode": "JP",
+     * "capital": "Tokyo",
+     * "flagFileUrl": "https://flagcdn.com/w320/jp.png",
+     * "population": 100800
+     * }
+     */
     @DeleteMapping("/countries")
     public void delete(@RequestBody Country country) {
         Country removed = countryService.deleteCountry(country);
         if (removed == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Delete a country from mock database with given country name.
+     * <p>
+     * Usage example:
+     * DELETE: http://localhost:8081/countries/Finland
+     */
     @DeleteMapping("/countries/{name}")
     public void delete(@PathVariable String name) {
         Country removed = countryService.deleteCountry(name);
