@@ -14,7 +14,9 @@ import java.util.Map;
 public class CountryService {
 
     /**
-     * The mock database of country data.
+     * The mocking database of country data.
+     * Country data is referenced from REST Countries API version 3.1
+     * @see <a href="https://restcountries.com/v3.1/all?fields=name,flags,population,capital,cca2">REST Countries V3.1</a>
      */
     private final Map<String, Country> countries = new HashMap<>() {{
         put("Finland", new Country("Finland", "FI", "Helsinki", "https://flagcdn.com/w320/fi.png", 5530719));
@@ -23,10 +25,10 @@ public class CountryService {
         put("Denmark", new Country("Denmark", "DK", "Copenhagen", "https://flagcdn.com/w320/dk.png", 5831404));
         put("Norway", new Country("Norway", "NO", "Oslo", "https://flagcdn.com/w320/no.png", 5379475));
         put("Sweden", new Country("Sweden", "SE", "Stockholm", "https://flagcdn.com/w320/se.png", 10353442));
-        put("Switzerland", new Country("Switzerland", "CH", "Bern", "https://flagcdn.com/w320/ch.png", 8636896));
-        put("Japan", new Country("Japan", "JP", "Tokyo", "https://flagcdn.com/w320/jp.png", 100800));
+        put("Switzerland", new Country("Switzerland", "CH", "Bern", "https://flagcdn.com/w320/ch.png", 8654622));
+        put("Japan", new Country("Japan", "JP", "Tokyo", "https://flagcdn.com/w320/jp.png", 125836021));
         put("Austria", new Country("Austria", "AT", "Vienna", "https://flagcdn.com/w320/at.png", 8917205));
-//        put("Australia", new Country("Australia", "AU", "Canberra", "https://flagcdn.com/w320/au.png", 25687041));
+        put("Australia", new Country("Australia", "AU", "Canberra", "https://flagcdn.com/w320/au.png", 25687041));
     }};
 
     public Collection<Country> getCountries() {

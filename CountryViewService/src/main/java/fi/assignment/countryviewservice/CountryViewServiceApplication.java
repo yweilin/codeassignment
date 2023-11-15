@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * The Country View Service runs on localhost at port 8082.
+ * The Country View Service which runs on localhost at port 8082 provides service to view data of countries.
  */
 @SpringBootApplication
 public class CountryViewServiceApplication {
 
-	public static final String COUNTRY_SERVICE_ROOT_URI = "http://localhost:8081/countries";
+	public static final String COUNTRY_SERVICE_ROOT_URL = "http://localhost:8081/countries";
 
 	@Bean
 	public RestTemplate getRestTemplate() {

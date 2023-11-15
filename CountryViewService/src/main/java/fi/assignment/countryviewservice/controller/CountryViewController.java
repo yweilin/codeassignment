@@ -12,8 +12,12 @@ import reactor.core.publisher.Mono;
 import java.util.Collection;
 import java.util.List;
 
-import static fi.assignment.countryviewservice.CountryViewServiceApplication.COUNTRY_SERVICE_ROOT_URI;
+import static fi.assignment.countryviewservice.CountryViewServiceApplication.COUNTRY_SERVICE_ROOT_URL;
 
+/**
+ * This class fetches country data using Country Service.
+ * The communication with Country Service is handled using String WebFlux.
+ */
 @Controller
 public class CountryViewController {
 
@@ -30,7 +34,7 @@ public class CountryViewController {
     public String getCountry(@RequestParam(defaultValue = "Finland") String name, Model model) {
         // Retrieve a country by send asynchronous request to Country Service
         Mono<Country> response = webClient.get()
-                .uri(COUNTRY_SERVICE_ROOT_URI + "/" + name)
+                .uri(COUNTRY_SERVICE_ROOT_URL + "/" + name)
                 .retrieve()
                 .bodyToMono(Country.class)
                 .log();
@@ -41,7 +45,7 @@ public class CountryViewController {
         model.addAttribute("methodName", "calling from getCountry()");
         model.addAttribute("country", country);
 
-        // The return name must match the name of country.html
+        // The return value must match the file name(country.html) under templates directory
         return "country";
     }
 
@@ -56,7 +60,7 @@ public class CountryViewController {
         // Retrieve countries by send asynchronous request to Country Service
         Mono<Collection<Country>> response = webClient
                 .get()
-                .uri(COUNTRY_SERVICE_ROOT_URI)
+                .uri(COUNTRY_SERVICE_ROOT_URL)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<>() {
                 });
@@ -68,7 +72,7 @@ public class CountryViewController {
         model.addAttribute("methodName", "calling from getCountries()");
         model.addAttribute("countries", all);
 
-        // The return name must match the name of countries.html
+        // The return value must match the file name(countries.html) under templates directory
         return "countries";
     }
 }

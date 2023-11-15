@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>fi.assignment</groupId>
 	<artifactId>CountryService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>CountryService</name>
 	<description>Code assignment of Country Service</description>
 	<properties>

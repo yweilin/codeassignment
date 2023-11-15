@@ -7,7 +7,7 @@ and display the data onto web page.
 The *Country View Service* can be run on localhost at port 8082.
 
 ## Country View Service API Documentation
-The local host of Country View Service : http://localhost:8082
+The local host of *Country View Service* : http://localhost:8082
 
 | API                         | DESCRIPTION             |
 |:----------------------------|:------------------------|
@@ -35,21 +35,24 @@ mvn clean install -DskipTest=true
 
 #### How to start Country Service by CLT
 ```
-java -jar CountryService-0.0.1-SNAPSHOT.jar
+java -jar CountryService-1.0.0-SNAPSHOT.jar
 ```
 
 #### How to start Country View Service by CLT
 ```
-java -jar CountryViewService-0.0.1-SNAPSHOT.jar
+java -jar CountryViewService-1.0.0-SNAPSHOT.jar
 ```
 
 ## How to use?
 
-* Start both services with localhost
-* Go to browser and try out
-  * Fetch data of all countries: http://localhost:8081/countries
-  * Fetch data of a specific country: http://localhost:8081/countries/Finland
-  * View all countries: http://localhost:8081/
+* Start *Country Service* and *Country View Service* servers
+
+  ```
+  java -jar CountryService-1.0.0-SNAPSHOT.jar
+  java -jar CountryViewService-1.0.0-SNAPSHOT.jar
+  ```
+  
+* Go to browser with localhost and try out
   * View home page: http://localhost:8082
   * View all countries: http://localhost:8082/countries
   * View a specific country: http://localhost:8082/country?name=China

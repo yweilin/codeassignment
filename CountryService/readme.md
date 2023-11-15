@@ -5,7 +5,7 @@ The *Country Service* is the service to retrieve data for single or multiple cou
 The data includes country name, country code, population and URI of country flag.
 
 The information of all country can be viewed in web page through a localhost.
-Those country data is fetched via RESTful API of REST Countries service.
+Those country data is fetched via RESTful API of *REST Countries* service.
 
 The *Country Service* can be run on localhost at port 8081.
 
@@ -50,14 +50,14 @@ Multiple countries:
 ```
 
 ## Country Service API Documentation
-The local host of Country Service : http://localhost:8081
+The local host of *Country Service* : http://localhost:8081
 
-| API                        | DESCRIPTION                             |
-|:---------------------------|:----------------------------------------|
-| GET:    /countries         | Get data of all countries               |
-| GET:    /countries/{name}  | Get data of a country with given name   |
-| POST:   /countries         | Add a country with payload of a country |
-| DELETE: /countries/{name}  | Delete a country with given name        |
+| API                       | DESCRIPTION                             |
+|:--------------------------|:----------------------------------------|
+| GET:    /countries        | Get data of all countries               |
+| GET:    /countries/{name} | Get data of a country with given name   |
+| POST:   /countries        | Add a country with payload of a country |
+| DELETE: /countries/{name} | Delete a country with given name        | 
 
 ## Project Setup
 ### Requirement
@@ -80,7 +80,7 @@ mvn clean install -DskipTest=true
 
 #### How to start Country Service server by CLT
 ```
-java -jar CountryService-0.0.1-SNAPSHOT.jar
+java -jar CountryService-1.0.0-SNAPSHOT.jar
 ```
 
 #### How to run tests by CLT
@@ -89,11 +89,17 @@ mvn test
 ```
 ## How to use?
 
-* Start the service with localhost
-* Go to browser and try out
+* Start the *Country Service* server
+    ```
+    java -jar CountryService-1.0.0-SNAPSHOT.jar
+    ```
+  
+* Go to browser with localhost and try out
    * Fetch data of all countries: http://localhost:8081/countries
    * Fetch data of a specific country: http://localhost:8081/countries/Finland
-   * View all countries: http://localhost:8081/
+   * Add a country to mock DB: http://localhost:8081/countries
+   * Delete a country from mock DB: http://localhost:8081/countries/Finland
+   * View all countries: http://localhost:8081
 
 ## Development Details
 
@@ -104,42 +110,74 @@ mvn test
 * [REST Countries API version 2.0](https://restcountries.com/v2/all)
 * [REST Countries API version 3.1](https://restcountries.com/v3.1/all)
 * [Spring Boot 3.1.5](https://spring.io/projects/spring-boot/)
-* [Spring initializr](https://start.spring.io/)
-* [Spring Quickstart Guide](https://spring.io/quickstart/)
+* [Spring Initializr](https://start.spring.io/)
+* [Reactive](https://spring.io/reactive)
+* [React Core](https://docs.spring.io/spring-framework/reference/web/webflux/reactive-spring.html)
+* [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html)
 * [Spring 5 WebClient](https://www.baeldung.com/spring-5-webclient)
 * [Get List of JSON Objects with WebClient](https://www.baeldung.com/spring-webclient-json-list)
 * [Testing the Web Layer](https://spring.io/guides/gs/testing-web/)
-* [React Core](https://www.baeldung.com/reactor-core)
 * [Bootstrap v5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 * [Thymeleaf v3.1](https://www.thymeleaf.org/documentation.html)
 
-### Outline implementation structure
-Serving Web Content with Spring MVC.
-1. Country Service provides data about countries
-   1. CountryController.class
-   2. CountryService.class
-   3. Country.class
-   4. CountryServiceApplication.class
-2. Country View Service fetches the data using Country Service and provide view
-   1. CountryViewController.class
-   2. CountryViewApplication.class
+### Structure Outline
+Serving Web Content with *Spring MVC*.
+Reactive microservices with *Spring WebFlux*.
+
+```
+.
+├── pom.xml
+├── readme.md
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── fi
+    │   │       └── assignment
+    │   │           └── countryservice
+    │   │               ├── CountryServiceApplication.java
+    │   │               ├── controller
+    │   │               │   └── CountryController.java
+    │   │               ├── model
+    │   │               │   └── Country.java
+    │   │               └── service
+    │   │                   └── CountryService.java
+    │   └── resources
+    │       ├── application.properties
+    │       └── static
+    │           ├── country.css
+    │           ├── country.js
+    │           └── index.html
+    └── test
+        └── java
+            └── fi
+                └── assignment
+                    └── countryservice
+                        ├── CountryServiceApplicationTests.java
+                        └── controller
+                            └── CountryControllerTest.java
+```
 
 ### Implementation steps
 
 1. Setup working environment
 2. Make project skeleton
-3. Implement Country Service with mock country data
-4. Test the implemented service
-5. Implement Country View Service which uses Country Service
-6. View all countries using data provided by REST Countries, the JavaScript way
-7. Migrate the Country Service to using data from REST Countries
+3. Implement *Country Service* with mock country data
+4. Manual and unit test the implemented service
+5. Implement *Country View Service* which uses *Country Service*
+6. Display all countries using real data provided by *REST Countries*, the JavaScript way
+7. Make the services reactive with *Spring WebFlux*
+8. Display all countries using mock data, the Microservice way
+9. Make *Countries Services* and *Countries View Service* using real country data
+10. Display real country data on browser
 
 ### Task Checklist
 - [x] Project skeleton, 10-11-2023
-- [x] Country Service with mock country data, 11-11-2023
-- [x] Mocking tests the Country Service, 11-11-2023
-- [x] Manual tests using Postman, 11-11-2023
+- [x] *Country Service* with mock country data, 11-11-2023
+- [x] Mocking tests the *Country Service*, 11-11-2023
+- [x] Manual tests using *Postman*, 11-11-2023
 - [x] View all countries using JavaScript via REST Countries API, 12-11-2023
-- [x] Country View Service using Country Service, 15-11-2023
-- [ ] Migrate Country Service to use REST Countries API
-- [ ] Documentation and code clean up
+- [x] *Country View Service* using *Country Service*, 15-11-2023
+- [x] View all countries using mock country data, the Microservice way, 15-11-2023
+- [x] Real country data can be fetched and displayed, 16-11-2023
+- [x] Documentation and code clean up, 16-11-2023
+- [x] Final test, 16-11-2023

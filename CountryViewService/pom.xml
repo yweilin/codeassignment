@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>fi.assignment</groupId>
 	<artifactId>CountryViewService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>CountryViewService</name>
 	<description>Code assignment for Spring Boot</description>
 	<properties>

@@ -51,8 +51,6 @@ class CountryControllerTest {
 
     @BeforeEach
     void setUp() {
-        // Country data is reference from REST Countries API version 3.1
-        // https://restcountries.com/v3.1/all?fields=name,flags,population,capital,cca2
         countries = new HashSet<>() {{
             add(new Country("Norway", "NO", "Oslo", "https://flagcdn.com/w320/no.png", 5379475));
             add(new Country("Sweden", "SE", "Stockholm", "https://flagcdn.com/w320/se.png", 10353442));
