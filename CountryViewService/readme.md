@@ -1,29 +1,18 @@
 # Country View Service
 
-## About the Country View Service
-The *Country View Service* is the service to fetch country data via *Country Service* 
+## About the CountryViewService
+The *CountryViewService* is the service to fetch country data via *CountryService* 
 and display the data onto web page.
 
-The *Country View Service* can be run on localhost at port 8082.
+The *CountryViewService* can be run on localhost at port 8082.
 
-## Country View Service API Documentation
+## CountryViewService API Documentation
 The local host of *Country View Service* : http://localhost:8082
 
-| API                         | DESCRIPTION             |
-|:----------------------------|:------------------------|
-| GET: /countries             | View all countries      |
-| GET: /countries?name={name} | View a specific country |
-
-## Project Setup
-### Requirement
-* Java 17 + JDK
-* Spring Boot version 3.1.5, current newest stable version
-* Apache Maven version 3.9.5
-
-### Development Tools
-* IntelliJ IDEA
-* Postman
-* GitHub
+| API                        | DESCRIPTION             |
+|:---------------------------|:------------------------|
+| GET /countries             | View all countries      |
+| GET /countries?name={name} | View a specific country |
 
 ## How to build and start service?
 IntelliJ IDEA or CLT(Command Line Tool) is used to build application, start server or run tests.
@@ -33,19 +22,19 @@ IntelliJ IDEA or CLT(Command Line Tool) is used to build application, start serv
 mvn clean install -DskipTest=true
 ```
 
-#### How to start Country Service by CLT
+#### How to start CountryService by CLT
 ```
 java -jar CountryService-1.0.0-SNAPSHOT.jar
 ```
 
-#### How to start Country View Service by CLT
+#### How to start CountryViewService by CLT
 ```
 java -jar CountryViewService-1.0.0-SNAPSHOT.jar
 ```
 
 ## How to use?
 
-* Start *Country Service* and *Country View Service* servers
+* Start *CountryService* and *CountryViewService* servers
 
   ```
   java -jar CountryService-1.0.0-SNAPSHOT.jar
